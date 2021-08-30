@@ -1,1 +1,57 @@
-xml
+{%  extends 'main.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome
+    </title>
+
+</head>
+<body>
+<br>
+
+<div class = "jumbotron text-center" >
+
+    <h3>CSV FILE</h3>
+
+    <hr>
+
+    <table id="products" class="table table-striped table-bordered" cellspacing="0" width="100%">
+      <thead>
+        <tr>
+            {% for keys in xml_keys_list %}
+                <th>{{ keys }}</th>
+            {% endfor %}
+      </thead>
+        {% for book in list_of_books %}
+          <tbody>
+            <td>{{ book.0 }}</td>
+            <td>{{ book.1 }}</td>
+            <td>{{ book.2 }}</td>
+            <td>{{ book.3 }}</td>
+            <td>{{ book.4 }}</td>
+            <td>{{ book.5 }}</td>
+            <td>{{ book.6 }}</td>
+            <td>{{ book.7 }}</td>
+            <td>{{ book.8 }}</td>
+            <td><a class="btn btn-sm btn-outline-primary" href="{% url 'home' %}">Show Details</a></td>
+          </tbody>
+        {% endfor %}
+    </table>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" ></script>
+<script>
+$(document).ready(function() {
+    $('#products').DataTable();
+} );
+
+</script>
+
+</div>
+
+</body>
+</html>
+
+{% endblock %}

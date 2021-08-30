@@ -45,7 +45,24 @@ class JsonFileView(View):
 
 class XmlFileView(View):
     def get(self, request):
-        context = {}
+        tree = ETree.parse('books.xml')
+        root = tree.getroot()
+        a = []
+        for ele in root:
+            b = {}
+            for i in list(ele):
+                b.update({i.tag: i.text})
+                a.append(b)
+
+        df_xml = pd.DataFrame(a)
+        df_xml.drop_duplicates(keep='first', inplace=True)
+        list_of_books = df_xml.values.tolist()
+        xml_keys = df_xml.keys()
+        xml_keys_list = xml_keys.values
+        context = {
+            'list_of_books': list_of_books,
+            'xml_keys_list': xml_keys_list,
+        }
         return render(request, 'xml_file.html', context);
 
 
