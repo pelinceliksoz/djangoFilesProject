@@ -5,6 +5,7 @@ import pandas as pd
 import numpy as np
 import warnings
 import xml.etree.ElementTree as ETree
+from openpyxl.utils.dataframe import dataframe_to_rows
 
 
 
@@ -20,7 +21,6 @@ class CsvFileView(View):
         df = pd.read_csv('books.csv', delimiter=';')
         # User list comprehension to create a list of lists from Dataframe rows
         list_of_books = [list(row) for row in df.values]
-        print(list_of_books)
         context = {
             'list_of_books': list_of_books,
         }
@@ -29,7 +29,17 @@ class CsvFileView(View):
 
 class JsonFileView(View):
     def get(self, request):
-        context = {}
+
+        df_json = pd.read_json('books.json')
+        list_of_books = [list(row) for row in df_json.values]
+        # print(list_of_books)
+        keys = df_json.keys()
+        key_values = keys.values
+        # print(key_values)
+        context = {
+            'list_of_books': list_of_books,
+            'key_values': key_values,
+        }
         return render(request, 'json_file.html', context);
 
 
