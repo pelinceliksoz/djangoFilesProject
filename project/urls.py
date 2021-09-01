@@ -7,5 +7,7 @@ urlpatterns = [
     path('json_file', views.JsonFileView.as_view(), name='json_file'),
     path('xml_file', views.XmlFileView.as_view(), name='xml_file'),
     path('csv_data', views.CsvDataView.as_view(), name='csv_data'),
+    path('json_data', views.JsonDataView.as_view(), name='json_data'),
+    path('xml_data', views.XmlDataView.as_view(), name='xml_data'),
 
 ]
