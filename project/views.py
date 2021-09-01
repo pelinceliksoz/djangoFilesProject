@@ -72,6 +72,20 @@ class CsvDataView(View):
         list_of_services = [list(row) for row in df.values]
         # print(list_of_services)
 
+        uid_list = []
+        for row in df.values:
+            uid_list.append(row[0])
+        # print(uid_list)
+
+        service_uid_list = []
+        for uid in uid_list:
+            service_uid = uid
+            if uid not in service_uid_list:
+                service_uid_list.append(service_uid)
+
+
+        # for uid in service_uid_list:
+
         edited_list_of_services = []
         group_trial_dict_list = []
         services_dict_list = []
@@ -92,23 +106,18 @@ class CsvDataView(View):
             services_dict[service[0]] = group_trial_dict
             services_dict_list.append(services_dict)
             # group_trial_dict_list.append(group_trial_dict)
-        print(services_dict_list)
-        print(services_dict_list[1])
+        # print(services_dict_list)
+
+        for uid in service_uid_list:
+            for service in services_dict_list:
+                for key in service.keys():
+                    if key == uid:
+                        print('------------------------------------------------------------', key)
+                        print(service.get(uid))
 
 
 
-        # uid_list = []
-        # for row in df.values:
-        #     uid_list.append(row[0])
-        # # print(uid_list)
-        #
-        # service_uid_list = []
-        # for uid in uid_list:
-        #     service_uid = uid
-        #     if uid not in service_uid_list:
-        #         service_uid_list.append(service_uid)
-        #
-        # # for uid in service_uid_list:
+
         # services_list = []
         # group_trail_list = []
         #
