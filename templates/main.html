@@ -19,62 +19,62 @@
     />
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <nav class="navbar navbar-expand-lg navbar-warning bg-warning">
-        <div class="container-fluid justify-content-between">
-            <!-- Left elements -->
-            <div class="d-flex">
-                <!-- Brand -->
-                <a href="{% url 'home' %}"><img src="/static/images/eatit_text_3.png" alt="course image" height="40px" ></a>
+{#    <nav class="navbar navbar-expand-lg navbar-warning bg-warning">#}
+{#        <div class="container-fluid justify-content-between">#}
+{#            <!-- Left elements -->#}
+{#            <div class="d-flex">#}
+{#                <!-- Brand -->#}
+{#                <a href="{% url 'home' %}"><img src="/static/images/eatit_text_3.png" alt="course image" height="40px" ></a>#}
 {#                <a class="navbar-brand me-2 mb-1 d-flex align-items-center" href="{% url 'userPage' %}" style="font-family: 'Times New Roman'"> Peaky Learn#}
 {#                </a>#}
-
-            </div>
-            <!-- Left elements -->
-
-            <!-- Center elements -->
-            <ul class="navbar-nav flex-row d-none d-md-flex">
-                <!-- Search form -->
-                <form class="input-group w-auto my-auto d-none d-sm-flex" method=POST action="{% url 'home' %}">
-                    {% csrf_token %}
-                    <input
-                            style="width: 600px!important;"
-                            autocomplete="off"
-                            type="search"
-                            class="form-control rounded"
-                            placeholder="Search..."
-                            style="min-width: 125px;"
-                            name="searched"
-                    />
-                    <span class="input-group-text border-0 d-none d-lg-flex">
-                    <button class="fas fa-search" type="submit"> </button></span>
-                </form>
-            </ul>
-            <!-- Center elements -->
-
-            <!-- Right elements -->
-            <ul class="navbar-nav flex-row">
+{##}
+{#            </div>#}
+{#            <!-- Left elements -->#}
+{##}
+{#            <!-- Center elements -->#}
+{#            <ul class="navbar-nav flex-row d-none d-md-flex">#}
+{#                <!-- Search form -->#}
+{#                <form class="input-group w-auto my-auto d-none d-sm-flex" method=POST action="{% url 'home' %}">#}
+{#                    {% csrf_token %}#}
+{#                    <input#}
+{#                            style="width: 600px!important;"#}
+{#                            autocomplete="off"#}
+{#                            type="search"#}
+{#                            class="form-control rounded"#}
+{#                            placeholder="Search..."#}
+{#                            style="min-width: 125px;"#}
+{#                            name="searched"#}
+{#                    />#}
+{#                    <span class="input-group-text border-0 d-none d-lg-flex">#}
+{#                    <button class="fas fa-search" type="submit"> </button></span>#}
+{#                </form>#}
+{#            </ul>#}
+{#            <!-- Center elements -->#}
+{##}
+{#            <!-- Right elements -->#}
+{#            <ul class="navbar-nav flex-row">#}
 {#                <li class="nav-item me-3 me-lg-1" >#}
 {#                    <a class="nav-link d-sm-flex align-items-sm-center" href="{% url 'index'%}">#}
 {#                        <img class="round" width="28" height="28" avatar={{ username }}>#}
 {#                        <strong class="d-none d-sm-block ms-1">&ensp; {{ username }}</strong>#}
 {#                    </a>#}
 {#                </li>#}
-                <!-- Badge -->
-                <li style="padding-left:20px;" class="nav-item">
-                    <a class="nav-link" href="{% url 'home' %}">
-                        <span class="badge badge-pill bg-danger">1</span>
-                        <span><i class="fas fa-heart"></i></span>
-                    </a>
-                </li>
-                <li style="padding-left:20px;" class="nav-item">
-                    <td><a href="{% url 'home' %}" class = "btn btn-success">Show Orders</a></td>
-                    <td><a href="{% url 'home' %}" class = "btn btn-info">My Profile</a></td>
-                    <td><a href="{% url 'home' %}" class = "btn btn-danger">Logout</a></td>
-                </li>
-            </ul>
-            <!-- Right elements -->
-        </div>
-    </nav>
+{#                <!-- Badge -->#}
+{#                <li style="padding-left:20px;" class="nav-item">#}
+{#                    <a class="nav-link" href="{% url 'home' %}">#}
+{#                        <span class="badge badge-pill bg-danger">1</span>#}
+{#                        <span><i class="fas fa-heart"></i></span>#}
+{#                    </a>#}
+{#                </li>#}
+{#                <li style="padding-left:20px;" class="nav-item">#}
+{#                    <td><a href="{% url 'home' %}" class = "btn btn-success">Show Orders</a></td>#}
+{#                    <td><a href="{% url 'home' %}" class = "btn btn-info">My Profile</a></td>#}
+{#                    <td><a href="{% url 'home' %}" class = "btn btn-danger">Logout</a></td>#}
+{#                </li>#}
+{#            </ul>#}
+{#            <!-- Right elements -->#}
+{#        </div>#}
+{#    </nav>#}
 
 </head>
 <body>

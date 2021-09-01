@@ -70,19 +70,31 @@ class CsvDataView(View):
         # Create a dataframe from csv
         df = pd.read_csv('data.csv', delimiter=',')
         service_list = get_service_list(df)
+        main = '1MAIN'
+        spare_1 = '1SPARE'
+        spare_2 = '2SPARE'
         context = {
-            'service_list': service_list
+            'service_list': service_list,
+            'main': main,
+            'spare_1': spare_1,
+            'spare_2': spare_2
         }
         return render(request, 'csv_data.html', context);
 
-# df_json = pd.read_json('data.json')
+
 class JsonDataView(View):
     def get(self, request):
         # Create a dataframe from csv
         df = pd.read_json('data.json')
         service_list = get_service_list(df)
+        main = '1MAIN'
+        spare_1 = '1SPARE'
+        spare_2 = '2SPARE'
         context = {
-            'service_list': service_list
+            'service_list': service_list,
+            'main': main,
+            'spare_1': spare_1,
+            'spare_2': spare_2
         }
         return render(request, 'json_data.html', context);
 
@@ -101,8 +113,14 @@ class XmlDataView(View):
         df = pd.DataFrame(a)
         df.drop_duplicates(keep='first', inplace=True)
         service_list = get_service_list(df)
+        main = '1MAIN'
+        spare_1 = '1SPARE'
+        spare_2 = '2SPARE'
         context = {
-            'service_list': service_list
+            'service_list': service_list,
+            'main': main,
+            'spare_1': spare_1,
+            'spare_2': spare_2
         }
         return render(request, 'xml_data.html', context);
 
@@ -142,7 +160,6 @@ def get_service_list(df):
         services_dict_list.append(services_dict)
         # group_trial_dict_list.append(group_trial_dict)
     # print(services_dict_list)
-
     service_list = []
     service_dict = {}
     for uid in service_uid_list:
@@ -152,11 +169,34 @@ def get_service_list(df):
                 if key == uid:
                     group_list.append(service.get(uid))
         # print(group_list)
-
-        service_dict[uid] = group_list
+        sorted_group_list = get_sorted_group_list(group_list)
+        service_dict[uid] = sorted_group_list
     service_list.append(service_dict)
-
-    # print(service_list)
-
     return service_list
+
+
+def get_sorted_group_list(group_list):
+    # for main
+    sorted_group_list = []
+    sort_groups(group_list, '1MAIN', '1', sorted_group_list)
+    sort_groups(group_list, '1MAIN', '2', sorted_group_list)
+    sort_groups(group_list, '1MAIN', '3', sorted_group_list)
+    sort_groups(group_list, '1SPARE', '1', sorted_group_list)
+    sort_groups(group_list, '1SPARE', '2', sorted_group_list)
+    sort_groups(group_list, '1SPARE', '3', sorted_group_list)
+    sort_groups(group_list, '2SPARE', '1', sorted_group_list)
+    sort_groups(group_list, '2SPARE', '2', sorted_group_list)
+    sort_groups(group_list, '2SPARE', '3', sorted_group_list)
+    return sorted_group_list
+
+
+def sort_groups(group_list, key_name, order, sorted_group_list):
+    for group in group_list:
+        for key, value in group.items():
+            if key == key_name:
+                if value.startswith(order):
+                    last_index = len(value) - 1
+                    edited_value = value[1:last_index]
+                    sorted_group_list.append({key: edited_value})
+
 
