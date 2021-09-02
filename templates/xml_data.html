@@ -4,8 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Welcome
-    </title>
+    <title>XML FILE</title>
 
 </head>
 <body>
@@ -17,20 +16,24 @@
     <h3>Main : <p style="color:#4c00ff">BLUE</p></h3>
     <h3>First Spare : <p style="color:#ff0066">PINK</p></h3>
     <h3>Second Spare : <p style="color:#08871a">GREEN</p></h3>
+
+
     <hr>
 
-    <table id="products" class="table table-striped table-bordered" cellspacing="0" width="100%">
+    <table id="products" class="table table-striped table-bordered" style="width:100%">
       <thead>
         <tr>
-            <th></th>
-            <th></th>
-            <th></th>
-
+            <th>Service Uid</th>
+            <th>Trails</th>
+            <th>Details</th>
         </tr>
       </thead>
+        <tbody>
+
         {% for service in service_list %}
+
             {% for uid,group in service.items %}
-          <tbody>
+                <tr>
             <td>{{ uid }}</td>
              <td>{% for gr in group %}
                  {% for group_type, trail_name in gr.items %}
@@ -43,13 +46,16 @@
                      {% if group_type == spare_2 %}
                          <p style="color:#08871a">{{ trail_name }}</p> <br>
                      {% endif %}
+
                  {% endfor %}
              {% endfor %}
             </td>
-            <td><a class="btn btn-sm btn-outline-primary" href="{% url 'home' %}">Show Details</a></td>
-          </tbody>
+            <td><a class="btn btn-sm btn-outline-primary" href="{% url 'show_details' %}">Show Details</a></td>
+                </tr>
             {% endfor %}
+
         {% endfor %}
+    </tbody>
     </table>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -57,7 +63,7 @@
 <script>
 $(document).ready(function() {
     $('#products').DataTable();
-} );
+});
 
 </script>
 

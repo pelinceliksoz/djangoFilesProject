@@ -125,6 +125,12 @@ class XmlDataView(View):
         return render(request, 'xml_data.html', context);
 
 
+class ShowDetailsView(View):
+    def get(self, request):
+        context = {}
+        return render(request, 'show_details.html', context);
+
+
 def get_service_list(df):
     list_of_services = [list(row) for row in df.values]
     # print(list_of_services)
@@ -195,8 +201,10 @@ def sort_groups(group_list, key_name, order, sorted_group_list):
         for key, value in group.items():
             if key == key_name:
                 if value.startswith(order):
-                    last_index = len(value) - 1
+                    last_index = len(value)
                     edited_value = value[1:last_index]
                     sorted_group_list.append({key: edited_value})
+
+
 
 
