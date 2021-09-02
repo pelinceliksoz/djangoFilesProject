@@ -1,5 +1,50 @@
+{%  extends 'main.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class = "jumbotron text-center" >
+    <h1>
+        <a class="btn btn-primary" href="{% url 'csv_data' %}">---CSV DATA---</a>
+        <a class="btn btn-success" href="{% url 'json_data' %}">---JSON DATA---</a>
+        <a class="btn btn-danger" href="{% url 'xml_data' %}">---XML DATA---</a>
+    </h1>
+    <hr>
 
-<a class="btn btn-sm btn-outline-primary" href="{% url 'csv_data' %}">---CSV DATA---</a>
-<a class="btn btn-sm btn-outline-primary" href="{% url 'json_data' %}">---JSON DATA---</a>
-<a class="btn btn-sm btn-outline-primary" href="{% url 'xml_data' %}">---XML DATA---</a>
+    <table id="products" class="table table-striped table-bordered" style="width:100%">
 
+    </table>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" ></script>
+<script>
+$(document).ready(function() {
+    $('#products').DataTable();
+});
+
+</script>
+
+</div>
+
+</body>
+</html>
+
+{% endblock %}

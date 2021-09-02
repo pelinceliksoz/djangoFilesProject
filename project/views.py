@@ -14,6 +14,7 @@ class CsvDataView(View):
     def get(self, request):
         # Create a dataframe from csv
         df = pd.read_csv('data.csv', delimiter=',')
+        print(df)
         service_list = get_service_list(df)
         main = '1MAIN'
         spare_1 = '1SPARE'
@@ -31,6 +32,7 @@ class JsonDataView(View):
     def get(self, request):
         # Create a dataframe from csv
         df = pd.read_json('data.json')
+        print(df)
         service_list = get_service_list(df)
         main = '1MAIN'
         spare_1 = '1SPARE'
