@@ -38,13 +38,13 @@
              <td>{% for gr in group %}
                  {% for group_type, trail_name in gr.items %}
                      {% if group_type == main %}
-                         <p style="color:#4c00ff">{{ trail_name }} --- main</p> <br>
+                         <p style="color:#4c00ff">{{ trail_name }}</p> <br>
                      {% endif %}
                      {% if group_type == spare_1 %}
-                         <p style="color:#ff0066">{{ trail_name }} --- first spare</p> <br>
+                         <p style="color:#ff0066">{{ trail_name }}</p> <br>
                      {% endif %}
                      {% if group_type == spare_2 %}
-                         <p style="color:#08871a">{{ trail_name }} --- second spare</p> <br>
+                         <p style="color:#08871a">{{ trail_name }}</p> <br>
                      {% endif %}
                  {% endfor %}
              {% endfor %}
