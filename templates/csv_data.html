@@ -49,7 +49,7 @@
                  {% endfor %}
              {% endfor %}
             </td>
-            <td><a class="btn btn-sm btn-outline-primary" href="{% url 'show_details' %}">Show Details</a></td>
+            <td><a class="btn btn-sm btn-outline-primary" href="{% url 'show_details'  uid=uid  file_type='csv'%}">Show Details</a></td>
                 </tr>
             {% endfor %}
 

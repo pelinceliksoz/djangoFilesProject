@@ -14,7 +14,6 @@ class CsvDataView(View):
     def get(self, request):
         # Create a dataframe from csv
         df = pd.read_csv('data.csv', delimiter=',')
-        print(df)
         service_list = get_service_list(df)
         main = '1MAIN'
         spare_1 = '1SPARE'
@@ -73,11 +72,61 @@ class XmlDataView(View):
 
 
 class ShowDetailsView(View):
-    def get(self, request):
+    def get(self, request, uid, file_type):
+        uid = uid
+        file_type = file_type
+
+        if file_type == 'csv':
+            df = pd.read_csv('data.csv', delimiter=',')
+            service_list = get_service_list(df)
+        elif file_type == 'json':
+            df = pd.read_json('data.json')
+            service_list = get_service_list(df)
+        else:
+            tree = ETree.parse('data.xml')
+            root = tree.getroot()
+            a = []
+            for ele in root:
+                b = {}
+                for i in list(ele):
+                    b.update({i.tag: i.text})
+                    a.append(b)
+            df = pd.DataFrame(a)
+            df.drop_duplicates(keep='first', inplace=True)
+            service_list = get_service_list(df)
+
+        service_uid_list = get_service_uid_list(df)
+
+        group_list = []
+        for service in service_list:
+            for id, group in service.items():
+                if str(id) == uid:
+                    group_list = group
+        main_list = []
+        spare_1_list = []
+        spare_2_list = []
+        for group in group_list:
+            for group_type, trail in group.items():
+                if group_type == '1MAIN':
+                    main_list.append(str(trail))
+                elif group_type == '1SPARE':
+                    spare_1_list.append(str(trail))
+                else:
+                    spare_2_list.append(str(trail))
+
+        print(main_list)
+        print(spare_1_list)
+        print(spare_2_list)
+
         df = pd.read_csv('data.csv', delimiter=',')
         service_list = get_service_list(df)
         context = {
             'service_list': service_list,
+            'uid': uid,
+            'file_type': file_type,
+            'main_list': main_list,
+            'spare_1_list': spare_1_list,
+            'spare_2_list': spare_2_list,
         }
         return render(request, 'show_details.html', context);
 
